@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
         keyboardIsVisable = true
         logoTopConstraint.constant -= height
         heightChanged = height
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.7) {
             self.view.layoutIfNeeded()
         }
     }
@@ -69,6 +69,9 @@ class LoginViewController: UIViewController {
     public func resetUI() {
         keyboardIsVisable = false
         logoTopConstraint.constant += heightChanged
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
 
