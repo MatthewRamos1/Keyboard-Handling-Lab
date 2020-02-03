@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
-    private var originalTopConstraint: NSLayoutConstraint!
+    private var heightChanged: CGFloat = 0.0
     private var keyboardIsVisable = false
     
     override func viewDidLoad() {
@@ -59,8 +59,8 @@ class LoginViewController: UIViewController {
     private func moveKeyboardUp(_ height: CGFloat) {
         if keyboardIsVisable { return }
         keyboardIsVisable = true
-        originalTopConstraint = logoTopConstraint
-        logoTopConstraint.constant -= (height * 0.80)
+        logoTopConstraint.constant -= height
+        heightChanged = height
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
     
     public func resetUI() {
         keyboardIsVisable = false
-        logoTopConstraint.constant -= originalTopConstraint.constant
+        logoTopConstraint.constant += heightChanged
     }
 }
 
