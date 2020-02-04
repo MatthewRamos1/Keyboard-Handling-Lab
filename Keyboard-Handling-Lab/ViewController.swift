@@ -25,6 +25,10 @@ class ViewController: UIViewController {
         pulseAnimation()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        scaleAnimation(0.333)
+    }
+    
     
     private func pulseAnimation() {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [.repeat, .autoreverse], animations: {
@@ -32,15 +36,15 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
     
-    private func scaleAnimation() {
+    private func scaleAnimation(_ input: CGFloat) {
         UIView.animate(withDuration: 0.3) {
-            self.logoImageView.transform = CGAffineTransform(scaleX: 3, y: 3)
+            self.logoImageView.transform = CGAffineTransform(scaleX: input, y: input)
             self.logoImageView.alpha = 0.0
         }
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        scaleAnimation()
+        scaleAnimation(3)
     }
     
 
